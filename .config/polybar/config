@@ -1,4 +1,4 @@
-;rn more about how to configure Polybar
+bout how to configure Polybar
 ;   go to https://github.com/jaagr/polybar
 ;
 ;   The README contains alot of information
@@ -6,9 +6,9 @@
 ;=====================================================
 
 [colors]
-background = #1e2529
-background-alt = #e6ee
-foreground = #dfdfdf
+background = #CCffffff
+background-alt = #ffb52a
+foreground = #f74e00
 foreground-alt = #55
 primary = #ffb52a
 secondary = #e60053
@@ -36,9 +36,9 @@ underline-size = 4
 underline-color = #00f
 
 # no borders
-border-top-size = 0
-border-left-size = 0
-border-right-size = 0
+border-top-size = 15
+border-left-size = 100
+border-right-size = 100
 border-color = transparent
 
 # padding-left = 1
@@ -46,31 +46,23 @@ border-color = transparent
 module-margin-left = 1
 module-margin-right = 1
 
-font-0 = monospace:pixelsize=14;3
-font-1 = monospace:fontformat=truetype:size=14;3
-font-2 = siji:pixelsize=10
+#font-0 = monospace:pixelsize=14;3
+#font-1 = dejavu_font_complete:fontformat=truetype:size=14;3
+#font-2 = monospace:pixelsize=10
+font-0 = FontAwesome:size=14;3
+font-1 = Press Start K:size=10;3
+font-3 = Press Start K:size=10;3
+font-4 = monospace:size=14;3
 
-modules-left = i3 
-modules-center = xwindow
-modules-right = spl spm spr cpu spotify volume wlan battery date
+modules-left = i3 title 
+modules-center = spotify volume
+modules-right =  wlan battery date
 
 tray-position = none
 tray-padding = 2
 # tray-transparent = true
 ;tray-background = #0063ff
 tray-detached = false
-
-#wm-restack = bspwm
-# wm-restack = i3
-
-#used for margin the bar
-# override-redirect = true
-
-;scroll-up = bspwm-desknext
-;scroll-down = bspwm-deskprev
-
-;scroll-up = i3wm-wsnext
-;scroll-down = i3wm-wsprev
 
 
 [module/xwindow]
@@ -123,34 +115,20 @@ label-empty-padding = 2
 type = internal/i3
 format = <label-state> <label-mode>
 index-sort = true
-wrapping-scroll = false
+wrapping-scroll = true
+strip-wsnumbers = true
+pin-workspaces = true
 
-label-mode-padding = 2
-label-mode-foreground = #000
-label-mode-background = ${colors.primary}
+label-mode-padding = 5
 
-label-focused = %index%  %icon%
-label-focused-background = ${module/bspwm.label-focused-background}
-label-focused-underline = ${module/bspwm.label-focused-underline}
-label-focused-padding = ${module/bspwm.label-focused-padding}
-
-label-unfocused = %index%  %icon%
-label-unfocused-padding = ${module/bspwm.label-occupied-padding}
-
-label-urgent = %index%!  %icon%
-label-urgent-background = ${module/bspwm.label-urgent-background}
-label-urgent-padding = ${module/bspwm.label-urgent-padding}
-
-label-visible = %index%  %icon%
-label-visible-background = ${self.label-focused-background}
-label-visible-underline = ${self.label-focused-underline}
-label-visible-padding = ${self.label-focused-padding}
-
-ws-icon-0 = 1;
-ws-icon-1 = 2;
-ws-icon-2 = 3;
-ws-icon-3 = 4;
-ws-icon-4 = 5;
+label-unfocused-foreground = #07322B
+label-unfocused-padding = 1
+label-visible-foregroud = #07322B
+label-visible-padding = 1
+label-focused-foreground = #f74e00
+label-focused-padding = 1
+label-focused-underline = #f74e00
+label-urgent-padding = 1
 
 [module/mpd]
 type = internal/mpd
@@ -223,7 +201,7 @@ interface = wlp1s0
 interval = 3.0
 
 format-connected = <label-connected> <ramp-signal>
-format-connected-underline = #9f78e1
+format-connected-underline = #ffaa00
 format-disconnected-underline = ${self.format-connected-underline}
 
 label-connected = %essid%
@@ -264,7 +242,7 @@ time-alt = %H:%M:%S
 
 format-prefix = 
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #0a6cf5
+format-underline = #ff0008
 
 label = %time% %date%
 label-padding = 2
@@ -272,35 +250,19 @@ label-padding = 2
 [module/volume]
 type = internal/volume
 
-format-volume = <label-volume> <ramp-volume>
-label-volume-foreground = ${root.foreground}
-format-volume-underline = #55aa55
-format-volume-padding = 2
+format-volume=<label-volume><bar-volume>
+label-volume="  "
+label-volume-foreground=${root.foreground}
+label-muted="Muted "
 
-format-muted-prefix = " "
-format-muted-foreground = ${colors.foreground-alt}
-label-muted=
-ramp-volume-0=
-ramp-volume-1=
-ramp-volume-2=
-
-bar-volume-width = 10
-bar-volume-foreground-0 = #55aa55
-bar-volume-foreground-1 = #55aa55
-bar-volume-foreground-2 = #55aa55
-bar-volume-foreground-3 = #55aa55
-bar-volume-foreground-4 = #55aa55
-bar-volume-foreground-5 = #f5a70a
-bar-volume-foreground-6 = #ff5555
-bar-volume-gradient = false
-bar-volume-indicator = │
-bar-volume-indicator-font = 5
-bar-volume-indicator-foreground = #ff
-bar-volume-fill = ─
-bar-volume-fill-font = 2
-bar-volume-empty = ─
-bar-volume-empty-font = 2
-bar-volume-empty-foreground = ${colors.foreground-alt}
+bar-volume-width= 10
+bar-volume-gradient= true
+bar-volume-indicator = |
+bar-volume-indicator-font = 3 
+bar-volume-fill = - 
+bar-volume-fill-font = 3
+bar-volume-empty= -
+bar-volume-empty-font = 3
 
 [module/battery]
 type = internal/battery
@@ -309,11 +271,11 @@ adapter = AC0
 full-at = 98
 
 format-charging = <label-charging> <ramp-capacity>
-format-charging-underline = #0a6cf5
+format-charging-underline = #002df9
 format-charging-padding = 2
 
 format-discharging = <label-discharging> <ramp-capacity>
-format-discharging-underline = #ffb52a 
+format-discharging-underline = #006eff
 format-discharging-padding = 2
 
 format-full = <label-full> <ramp-capacity>
