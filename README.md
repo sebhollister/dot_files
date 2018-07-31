@@ -14,3 +14,6 @@
 * Program launcher: rofi 0.15.11
 * wallpaper: launched with feh
 * file manager: ranger
+* gtk-3.0 edited with lxappearence
+* Theme: Arc-Darker
+* Icons: Moka
